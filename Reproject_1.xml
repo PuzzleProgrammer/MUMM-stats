@@ -1,0 +1,17 @@
+<graph id="ReprojectModis">
+<version>1.0</version>
+<node id="reprojectionNode">
+<operator>Reproject</operator>
+<sources>
+<source>${sourceProducts}</source>
+</sources>
+<parameters>
+<crs>EPSG:3005</crs>
+
+<!-- Geographic Lat/Lon WGS84 -->
+<resampling>Nearest</resampling>
+</parameters>
+</node>
+</graph>
+
+

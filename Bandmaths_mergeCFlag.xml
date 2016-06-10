@@ -1,0 +1,45 @@
+<graph id="someGraphId">
+<version>1.0</version>
+<node id="testnode">
+
+<operator>BandMaths</operator>
+
+<sources>
+<sourceProducts>$testBand</sourceProducts>
+</sources>
+
+<parameters>
+
+<targetBands>
+<targetBand>
+<name>Chla40</name>
+<expression>((Rrs_443 &lt;=0 || HISOLZEN || HISATZEN || STRAYLIGHT || chlor_a &gt;=40 || chlor_a == -32767.0) ? NaN : chlor_a)</expression>
+<description>removes chla over 40mg, Negative 443nm radiance pixels, Unnacceptable solar or satellite zenith angles, or straylight pixels</description>
+<type>float32</type>
+<noDataValue>NaN</noDataValue>
+</targetBand>
+</targetBands>
+
+
+</parameters>
+
+</node>
+
+<node id="mergeNode">
+  <operator>Merge</operator>
+  <sources>
+    <masterProduct>$testBand</masterProduct>
+    <bandMathProduct>testnode</bandMathProduct>
+  </sources>
+  <parameters>
+    <includes>
+      <include>
+        <productId>bandMathProduct</productId>
+        <name>Chla40</name>
+		<newName>Chla40_geo</newName>
+      </include>
+    </includes>    
+  </parameters>
+</node>
+</graph>
+
